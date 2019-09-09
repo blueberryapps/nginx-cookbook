@@ -12,7 +12,7 @@ worker_shutdown_timeout <%= node['nginx']['worker_shutdown_timeout'] %>;
 <% node['nginx']['load_modules'].each do |module_to_load| %>
 load_module <%= module_to_load %>;
 <% end -%>
-<% if node['platform'] == 'ubuntu' && node['platform_version'].to_i >= 18 %>
+<% if (node['platform'] == 'debian' && node['platform_version'].to_i >= 9) || (node['platform'] == 'ubuntu' && node['platform_version'].to_i >= 18) %>
 include /etc/nginx/modules-enabled/*.conf;
 <% end -%>
 
